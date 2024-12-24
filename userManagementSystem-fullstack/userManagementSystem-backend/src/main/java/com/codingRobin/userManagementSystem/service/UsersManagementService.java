@@ -74,4 +74,30 @@ public class UsersManagementService {
         }
         return response;
     }
+
+
+    public ReqRes refreshToken(ReqRes refreshTokenRequest){
+        ReqRes response = new ReqRes();
+
+        try {
+            String userEmail = jwtUtils.extractUserName(refreshTokenRequest.getToken());
+            OurUsers user = usersRepo.findByEmail(userEmail).orElseThrow();
+            if (jwtUtils.isTokenValid(refreshTokenRequest.getToken(), user)){
+                var jwt = jwtUtils.generateToken(user);
+                response.setStatusCode(200);
+                response.setToken(jwt);
+                response.setRefreshToken(refreshTokenRequest.getToken());
+                response.setExpirationTime("24hours");
+                response.setMessage("successfully refreshed token");
+            }
+
+        }catch (Exception e) {
+            response.setStatusCode(500);
+            response.setError(e.getMessage());
+            response.setStatusCode(200);
+        }
+        return response;
+    }
+
+
 }
