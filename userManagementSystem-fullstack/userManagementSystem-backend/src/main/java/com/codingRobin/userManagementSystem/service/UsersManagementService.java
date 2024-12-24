@@ -191,4 +191,26 @@ public class UsersManagementService {
     }
 
 
+    public ReqRes getMyInfo(String email){
+        ReqRes response = new ReqRes();
+
+        try {
+            Optional<OurUsers> user = usersRepo.findByEmail(email);
+            if (user.isPresent()){
+                response.setOurUsers(user.get());
+                response.setStatusCode(200);
+                response.setMessage("successful!");
+            }else {
+                response.setStatusCode(404);
+                response.setMessage("no user found!");
+            }
+
+        }catch (Exception e){
+            response.setStatusCode(500);
+            response.setError("An error occurred " + e.getMessage());
+        }
+        return response;
+    }
+
+
 }
