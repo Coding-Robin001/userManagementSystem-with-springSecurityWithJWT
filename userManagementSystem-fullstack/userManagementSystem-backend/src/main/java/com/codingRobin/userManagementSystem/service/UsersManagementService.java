@@ -161,5 +161,34 @@ public class UsersManagementService {
         return response;
     }
 
+    public ReqRes updateUser(Integer id, OurUsers updatedUser){
+        ReqRes response = new ReqRes();
+
+        try {
+            Optional<OurUsers> user = usersRepo.findById(id);
+            if (user.isPresent()){
+                OurUsers existsingUser = user.get();
+                existsingUser.setName(updatedUser.getName());
+                existsingUser.setCity(updatedUser.getCity());
+                existsingUser.setEmail(updatedUser.getEmail());
+                existsingUser.setRole(updatedUser.getRole());
+
+                if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()){
+                    existsingUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
+                }
+
+                OurUsers newlyUpdatedUser = usersRepo.save(existsingUser);
+                response.setOurUsers(newlyUpdatedUser);
+                response.setStatusCode(200);
+                response.setMessage("user updated successfully!");
+            }
+
+        }catch (Exception e){
+            response.setStatusCode(500);
+            response.setError("An error occurred while attempting to update user " + e.getMessage());
+        }
+        return response;
+    }
+
 
 }
