@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsersManagementService {
@@ -135,6 +136,27 @@ public class UsersManagementService {
         } catch (Exception e){
             response.setStatusCode(500);
             response.setError("An error occurred " + e.getMessage());
+        }
+        return response;
+    }
+
+    public ReqRes deleteUserById(Integer id){
+        ReqRes response = new ReqRes();
+
+        try {
+            Optional<OurUsers> user = usersRepo.findById(id);
+            if (user.isPresent()){
+                usersRepo.deleteById(id);
+                response.setStatusCode(200);
+                response.setMessage("User with id " + id + " deleteted successfully!");
+            } else {
+                response.setStatusCode(404);
+                response.setMessage("No user with id " + id + " found!");
+            }
+
+        }catch (Exception e){
+            response.setStatusCode(500);
+            response.setError("An error occurred while attempting to delete user " + e.getMessage());
         }
         return response;
     }
