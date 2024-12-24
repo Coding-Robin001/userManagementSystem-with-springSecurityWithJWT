@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Service
 public class UsersManagementService {
@@ -90,13 +91,36 @@ public class UsersManagementService {
                 response.setExpirationTime("24hours");
                 response.setMessage("successfully refreshed token");
             }
+            response.setStatusCode(200);
+            return response;
 
         }catch (Exception e) {
             response.setStatusCode(500);
             response.setError(e.getMessage());
-            response.setStatusCode(200);
+            return response;
         }
-        return response;
+    }
+
+    public ReqRes getAllUsers(){
+        ReqRes response = new ReqRes();
+
+        try {
+            List<OurUsers> usersList = usersRepo.findAll();
+            if (!usersList.isEmpty()){
+                response.setOurUsersList(usersList);
+                response.setStatusCode(200);
+                response.setMessage("users list fetched successfully");
+            } else {
+                response.setStatusCode(404);
+                response.setMessage("no users on the list/list empty!");
+            }
+            return response;
+
+        }catch (Exception e){
+            response.setStatusCode(500);
+            response.setError("An error occurred " + e.getMessage());
+            return response;
+        }
     }
 
 
