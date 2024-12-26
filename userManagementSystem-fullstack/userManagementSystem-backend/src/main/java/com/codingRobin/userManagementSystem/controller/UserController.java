@@ -40,7 +40,7 @@ public class UserController {
         return ResponseEntity.ok(usersManagementService.getUserById(userId));
     }
 
-    @GetMapping("/admin/updateUser/{userId}")
+    @PutMapping("/admin/updateUser/{userId}")
     public ResponseEntity<ReqRes> updateUserById(@PathVariable Integer userId, @RequestBody OurUsers regResData){
         return ResponseEntity.ok(usersManagementService.updateUser(userId, regResData));
     }
@@ -52,5 +52,11 @@ public class UserController {
         ReqRes response = usersManagementService.getMyInfo(email);
         return ResponseEntity.status(response.getStatusCode()).body(response);
     }
+
+    @DeleteMapping("/admin/deleteUser/{userId}")
+    public ResponseEntity<ReqRes> deleteUserById(@PathVariable Integer userId){
+        return ResponseEntity.ok(usersManagementService.deleteUserById(userId));
+    }
+
 
 }
