@@ -20,7 +20,7 @@ class UsersService{
 
             const response = await axios.post(`${this.BASE_URL}/auth/register`, {userData},
                 {
-                    headers: {Authorization: `Bearer${token}`}
+                    headers: {Authorization: `Bearer ${token}`}
                 }
             )
             return response.data;
@@ -35,7 +35,7 @@ class UsersService{
 
             const response = await axios.get(`${this.BASE_URL}/admin/getAllUsers`,
                 {
-                    headers: {Authorization: `Bearer${token}`}
+                    headers: {Authorization: `Bearer ${token}`}
                 }
             )
             return response.data;
@@ -50,7 +50,7 @@ class UsersService{
 
             const response = await axios.get(`${this.BASE_URL}/adminuser/getProfile`,
                 {
-                    headers: {Authorization: `Bearer${token}`}
+                    headers: {Authorization: `Bearer ${token}`}
                 }
             )
             return response.data;
@@ -60,12 +60,12 @@ class UsersService{
         }
     }
 
-    static async getUserById(id, token){
+    static async getUserById(userId, token){
         try {
 
-            const response = await axios.get(`${this.BASE_URL}/admin/getUser`,
+            const response = await axios.get(`${this.BASE_URL}/admin/getUser/${userId}`,
                 {
-                    headers: {Authorization: `Bearer${token}`}
+                    headers: {Authorization: `Bearer ${token}`}
                 }
             )
             return response.data;
@@ -75,8 +75,35 @@ class UsersService{
         }
     }
 
+    static async updateUser(userId, userData, token){
+        try {
 
+            const response = await axios.get(`${this.BASE_URL}/admin/getUser/${userId}`, {userData},
+                {
+                    headers: {Authorization: `Bearer ${token}`}
+                }
+            )
+            return response.data;
+            
+        } catch (error) {
+            throw error
+        }
+    }
 
+    static async deleteUser(userId, token){
+        try {
+
+            const response = await axios.delete(`${this.BASE_URL}/admin/deleteUser/${userId}`,
+                {
+                    headers: {Authorization: `Bearer ${token}`}
+                }
+            )
+            return response.data;
+            
+        } catch (error) {
+            throw error
+        }
+    }
 
 
 
