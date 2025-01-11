@@ -1,6 +1,7 @@
 import axios from "axios";
 
-class UsersService{
+class UserService{
+    // ask chatgpt a way to create this methods/functions in ajaacsript/non-class way
     static BASE_URL = "http://localhost:1010"
 
     static async login(email, password){
@@ -106,5 +107,32 @@ class UsersService{
     }
 
 
+    // AUTHENTICATION CHECKER
+    static logout(){
+        localStorage.removeItem("token")
+        localStorage.removeItem("role")
+    }
 
+    static isAuthenticated(){
+        const token = localStorage.getItem("token")
+        return !!token
+    }
+
+    static isAdmin(){
+        const role = localStorage.getItem("role")
+        return role == "ADMIN"
+    }
+
+    static isUser(){
+        const role = localStorage.getItem("role")
+        return role == "USER"
+    }
+
+    static isAdminOnly(){
+        return this.isAuthenticated() && this.isAdmin()
+    }
+
+    // ask chatgpt if a person cannot just go into local storage and change role. if its secure.
 }
+
+export default UserService
