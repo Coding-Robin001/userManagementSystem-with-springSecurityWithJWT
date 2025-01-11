@@ -1,0 +1,64 @@
+.footer-section {
+    height: 400px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #f5f5f5;
+}
+
+.footer-section .footer-container {
+    padding: 3rem 1rem;
+    width: 1250px;
+    margin: 0 auto;
+}
+
+
+.footer-section .footer-container .intro-text{
+    font-size: 3.2rem;
+    margin-bottom: 0.5rem;
+    color: #0f0728;
+}
+
+.footer-section .footer-container .sub-intro {
+    font-size: 1.5rem;
+    color: 030014;
+    margin-bottom: 3rem;
+    color: #c70808;
+
+}
+
+.footer-section .footer-container .footer-card-box{
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-section .footer-container .footer-card-box .footer-card{
+    width: 350px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+
+.footer-center{
+    align-items: center;
+
+}
+
+
+.footer-section .footer-container .footer-card-box .footer-card p {
+    font-size: 1.7rem;
+    font-weight: 800;
+}
+
+.footer-section .footer-container .footer-card-box .footer-card span{
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.footer-section .footer-container .footer-card-box .footer-card .foot-text{
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
