@@ -79,7 +79,7 @@ class UserService{
     static async updateUser(userId, userData, token){
         try {
 
-            const response = await axios.get(`${this.BASE_URL}/admin/getUser/${userId}`, {userData},
+            const response = await axios.put(`${this.BASE_URL}/admin/update/${userId}`, userData,
                 {
                     headers: {Authorization: `Bearer ${token}`}
                 }
