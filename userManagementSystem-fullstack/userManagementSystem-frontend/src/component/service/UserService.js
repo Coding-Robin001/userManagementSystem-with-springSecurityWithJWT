@@ -128,7 +128,7 @@ class UserService{
         return role == "USER"
     }
 
-    static isAdminOnly(){
+    static adminOnly(){
         return this.isAuthenticated() && this.isAdmin()
     }
 
