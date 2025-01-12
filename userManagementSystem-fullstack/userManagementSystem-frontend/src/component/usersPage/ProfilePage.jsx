@@ -10,14 +10,32 @@ const ProfilePage = () => {
   }, [])
 
   const fetchProfileInfo = async () => {
-    const token = localStorage.getItem("token")
-    const response = await UserService.getProfileInfo(token)
-    setProfileInfo(response.ourUsers)
+
+    try {
+      const token = localStorage.getItem("token")
+      const response = await UserService.getProfileInfo(token)
+      setProfileInfo(response.ourUsers)
+    } catch (error) {
+      console.log("error loading profile information", error);
+    }
   }
 
   return (
     <div>
-
+      <h2>Profile Information</h2>
+      <p>name: {profileInfo.name}</p>
+      <p>email: {profileInfo.email}</p>
+      <p>city: {profileInfo.city}</p>
+      {
+        profileInfo.role === "ADMIN" &&
+        <button>
+          <Link
+            to={`/updateUser/${profileInfo.id}`}
+          >
+            Update this profile
+          </Link>
+        </button>
+      }
     </div>
   )
 }
