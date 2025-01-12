@@ -1,8 +1,13 @@
 import React from 'react'
 import "./Navbar.css"
 import { Link } from 'react-router-dom'
+import UserService from '../../service/UserService'
 
 const Navbar = () => {
+
+    const isAuthenticated = UserService.isAuthenticated()
+    const isAdmin = UserService.isAdmin()
+
     return (
         <div className='navbar-container'>
             <div className='nav-list'>
@@ -21,12 +26,6 @@ const Navbar = () => {
                     </Link>
                     <Link to="/contact">
                         <p>Contact</p>
-                    </Link>
-                    <Link to="/gallery">
-                        <p>Our Gallery</p>
-                    </Link>
-                    <Link to="/testimonials">
-                        <p>Testimonials</p>
                     </Link>
                 </div>
                 {/* <div className='btn-box'> */}
