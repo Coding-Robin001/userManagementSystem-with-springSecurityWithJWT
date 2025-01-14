@@ -1,5 +1,6 @@
 package com.codingRobin.userManagementSystem.service;
 
+import com.codingRobin.userManagementSystem.config.JwtConfig;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,18 +13,28 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.function.Function;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
+import org.springframework.stereotype.Component;
+import javax.crypto.SecretKey;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+import java.util.Date;
+import java.util.HashMap;
 
 
 @Component
 public class JwtUtils {
 
-    private SecretKey key;
-    private static final long EXP_TIME = 8640000L;
+    private final SecretKey key;
+    private final long EXP_TIME;
 
-    public JwtUtils(){
-        String secretString = "86342637WIESMPLAJH9ZMXLOWTQANMDKAK20SHD352526HHHS737372973NSGAT";
+    public JwtUtils(JwtConfig jwtConfig){
+        String secretString = jwtConfig.getSecret();
+        this.EXP_TIME = jwtConfig.getExpirationTime();
+
         byte[] keyBytes = Base64.getDecoder().decode(secretString.getBytes(StandardCharsets.UTF_8));
-        this.key = new SecretKeySpec(keyBytes, "HmacSHA256");
+        this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
     public String generateToken(UserDetails userDetails){
