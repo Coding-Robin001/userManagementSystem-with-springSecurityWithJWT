@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import UserService from '../service/UserService'
 import { useParams, useNavigate } from 'react-router-dom'
+import "../auth/Auth.css"
 
 const UpdateUser = () => {
 
@@ -61,10 +62,10 @@ const UpdateUser = () => {
 
 
   return (
-    <div>
-      <h2>Update User</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className='authContainer'>
+      <h2 className='head'>Update User</h2>
+      <form className='form' onSubmit={handleSubmit}>
+        <div className='formItem'>
           <label>Name</label>
           <input
             type="text"
@@ -73,7 +74,7 @@ const UpdateUser = () => {
             onChange={handleInputChange}
           />
         </div>
-        <div>
+        <div className='formItem'>
           <label>Email</label>
           <input
             type="email"
@@ -91,7 +92,7 @@ const UpdateUser = () => {
             onChange={handleInputChange}
           />
         </div> */}
-        <div>
+        <div className='formItem'>
           <label>City</label>
           <input
             type="text"
@@ -100,7 +101,7 @@ const UpdateUser = () => {
             onChange={handleInputChange}
           />
         </div>
-        <div>
+        <div className='formItem'>
           <label>Role</label>
           <input
             type="text"

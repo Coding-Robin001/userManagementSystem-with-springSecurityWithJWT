@@ -21,13 +21,13 @@ function App() {
             <Route path='/profile' element={<ProfilePage />} />
 
             {
-              // UserService.adminOnly() && (
+              UserService.adminOnly() && (
                 <>
                   <Route path='register' element={<RegistrationPage />} />
                   <Route path='admin/userManagement' element={<UserManagementPage />} />
                   <Route path='/updateUser/:userId' element={<UpdateUser />} />
                 </>
-              // )
+              )
             }
 
             <Route path='*' element={<Navigate to="/login" />} />
