@@ -1,11 +1,154 @@
 .usersPageContainer {
-    background: #b3b3b3;
-    margin-top: 6rem;
+    padding-top: 2rem;
+    margin-top: 4rem;
+    min-height: 100vh;
+    background-color: #e4e4e4;
 }
 
 .usersPageContainer .head {
     text-align: center;
-    margin: 1rem 0;
     color: #4e4e4e;
     font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+.usersPageContainer .profileInfoBox {
+    border: 1px solid #0f0728;
+    border-radius: 5px;
+    background-color: #b3b3b3;
+    width: 500px;
+    margin: 0 auto;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+
+.usersPageContainer .profileInfoBox p {
+    font-size: 1.5rem;
+    color: #00003f;
+
+}
+
+.usersPageContainer .profileInfoBox span {
+    font-weight: 700;
+    margin-left: 1rem;
+}
+
+.usersPageContainer .profileInfoBox button {
+    width: 100%;
+    padding: 0.8rem 0.5rem;
+    cursor: pointer;
+    background-color: #0f0728;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    margin-top: 1rem;
+    border-radius: 5px;
+}
+
+.usersPageContainer .profileInfoBox a {
+    text-decoration: none;
+    color: #fff;
+}
+
+
+/* userManagementContainer */
+/* userManagementContainer */
+/* userManagementContainer */
+
+.userManagementContainer {
+    padding-top: 2rem;
+    margin-top: 4rem;
+    min-height: 100vh;
+    background-color: #e4e4e4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.userManagementContainer .head {
+    text-align: center;
+    color: #4e4e4e;
+    font-size: 1.6rem;
+    margin-bottom: 0.4rem;
+}
+
+.userManagementContainer .addBtn {
+    width: 200px;
+    padding: 0.8rem 0.5rem;
+    cursor: pointer;
+    background-color: #0f0728;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    margin-top: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.userManagementContainer a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.userManagementContainer .table {
+    width: 100%;
+    padding: 3rem 3rem;
+    background-color: #b3b3b3;
+
+}
+
+.userManagementContainer .tableHead {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #fff;
+}
+
+.userManagementContainer .tableHead span {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-right: 5rem;
+}
+
+.userManagementContainer .tableBody {
+    width: 100%;
+}
+
+.userManagementContainer .tableBody .tableContent {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #fff;
+    align-items: center;
+}
+
+.userManagementContainer .tableBody .tableContent span {
+    font-size: 1.2rem;
+    color: #00003f;
+    margin: 1.5rem 0;
+}
+
+.userManagementContainer .tableBody .tableContent .btnBox {
+    display: flex;
+    gap: 1rem;
+}
+
+.userManagementContainer .tableBody .tableContent .btnBox button {
+    width: 100px;
+    padding: 0.6rem 0.3rem;
+    color: #fff;
+    border-radius: 5px;
+    border: transparent;
+    cursor: pointer;
+}
+
+.userManagementContainer .tableBody .tableContent .btnBox button.btnUpdate {
+    background-color: #083992;
+}
+
+.userManagementContainer .tableBody .tableContent .btnBox button.btnDelete {
+    background-color: red;
+
 }

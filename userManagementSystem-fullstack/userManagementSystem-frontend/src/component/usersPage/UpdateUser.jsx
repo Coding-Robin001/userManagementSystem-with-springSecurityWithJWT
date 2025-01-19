@@ -111,9 +111,9 @@ const UpdateUser = () => {
         </div>
         <button type='submit'>Update User</button>
       </form>
-      {
+      {/* {
         error && <h2>{error}</h2>
-      }
+      } */}
 
     </div>
   )

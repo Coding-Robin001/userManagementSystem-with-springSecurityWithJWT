@@ -25,19 +25,21 @@ const ProfilePage = () => {
   return (
     <div className='usersPageContainer'>
       <h2 className='head'>Profile Information</h2>
-      <p>name: {profileInfo.name}</p>
-      <p>email: {profileInfo.email}</p>
-      <p>city: {profileInfo.city}</p>
-      {
-        profileInfo.role === "ADMIN" &&
-        <button>
-          <Link
-            to={`/updateUser/${profileInfo.id}`}
-          >
-            Update this profile
-          </Link>
-        </button>
-      }
+      <div className='profileInfoBox'>
+        <p>Name: <span>{profileInfo.name} adewole ademola</span></p>
+        <p>Email: <span>{profileInfo.email} adewole@gmail.com</span></p>
+        <p>City: <span>{profileInfo.city} jamaica</span></p>
+        {
+          profileInfo.role === "ADMIN" &&
+          <button>
+            <Link
+              to={`/updateUser/${profileInfo.id}`}
+            >
+              Update this profile
+            </Link>
+          </button>
+        }
+      </div>
     </div>
   )
 }

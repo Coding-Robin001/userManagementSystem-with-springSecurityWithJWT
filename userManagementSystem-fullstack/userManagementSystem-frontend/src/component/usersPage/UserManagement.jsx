@@ -3,11 +3,37 @@ import { Link } from 'react-router-dom'
 import UserService from '../service/UserService'
 
 const UserManagement = () => {
-  const [users, setUsers] = useState([])
+  const userss = [
+    {
+      id: 1,
+      name: "adewole ademola",
+      email: "adewole@gmail.com"
+    },
+    {
+      id: 2,
+      name: "adewole kolawole",
+      email: "kolawole@gmail.com"
+    },
+    {
+      id: 3,
+      name: "adewole thomas",
+      email: "thomas@gmail.com"
+    },
+    {
+      id: 4,
+      name: "troy ademola",
+      email: "adewoleTroy@gmail.com"
+    }
+  ]
 
-  useEffect(() => {
-    fetchUsers()
-  }, [])
+
+  const [users, setUsers] = useState(userss)
+
+
+
+  // useEffect(() => {
+  //   fetchUsers()
+  // }, [])
 
   const fetchUsers = async () => {
 
@@ -37,47 +63,46 @@ const UserManagement = () => {
   }
 
   return (
-    <div>
-      <h2>User Management Page</h2>
-      <button><Link to="/register">Add User</Link></button>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>NAME</th>
-            <th>EMAIL</th>
-            <th>ACTIONS</th>
-          </tr>
-        </thead>
-        <tbody>
+    <div className='userManagementContainer'>
+      <h2 className='head'>User Management Page</h2>
+      <button className='addBtn'><Link to="/register">Add User</Link></button>
+
+      <div className='table'>
+        <div className="tableHead">
+          <span>ID</span>
+          <span>NAME</span>
+          <span>EMAIL</span>
+          <span>ACTIONS</span>
+        </div>
+        <div className="tableBody">
           {
             users.map(user => (
-              <tr key={user.id}>
-                <td>{user.id}</td>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>
+              <div className='tableContent'>
+                <span>{user.id}</span>
+                <span>{user.name}</span>
+                <span>{user.email}</span>
+                <div className="btnBox">
                   <button
+                    className='btnDelete'
                     onClick={() => deleteUser(user.id)}
                   >
                     Delete User
                   </button>
-                  <button>
+                  <button
+                    className='btnUpdate'>
                     <Link
                       to={`/updateUser/${user.id}`}
                     >
                       Update User
                     </Link>
                   </button>
-                </td>
-              </tr>
+                </div>
+              </div>
             ))
           }
-        </tbody>
-      </table>
-
+        </div>
+      </div>
     </div>
   )
 }
-
 export default UserManagement
