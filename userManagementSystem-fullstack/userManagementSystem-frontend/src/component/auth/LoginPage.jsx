@@ -2,6 +2,7 @@ import React from 'react'
 import UserService from '../service/UserService'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import "./Auth.css"
 
 
 const LoginPage = () => {
@@ -37,10 +38,10 @@ const LoginPage = () => {
   }
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className='authContainer'>
+      <h2 className='head'>Login</h2>
+      <form className='form' onSubmit={handleSubmit}>
+        <div className='formItem'>
           <label>Email</label>
           <input
             type="email"
@@ -48,7 +49,7 @@ const LoginPage = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div>
+        <div className='formItem'>
           <label>Password</label>
           <input
             type="password"

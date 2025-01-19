@@ -44,7 +44,6 @@ public class UsersManagementService {
                 response.setOurUsers(savedUser);
                 response.setMessage("User saved successfully!");
             }
-
         } catch (Exception e) {
             response.setStatusCode(500);
             response.setError(e.getMessage());
@@ -105,7 +104,6 @@ public class UsersManagementService {
 
     public ReqRes getAllUsers(){
         ReqRes response = new ReqRes();
-
         try {
             List<OurUsers> usersList = usersRepo.findAll();
             if (!usersList.isEmpty()){
@@ -177,13 +175,11 @@ public class UsersManagementService {
                 if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()){
                     existsingUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
                 }
-
                 OurUsers newlyUpdatedUser = usersRepo.save(existsingUser);
                 response.setOurUsers(newlyUpdatedUser);
                 response.setStatusCode(200);
                 response.setMessage("user updated successfully!");
             }
-
         }catch (Exception e){
             response.setStatusCode(500);
             response.setError("An error occurred while attempting to update user " + e.getMessage());
@@ -212,6 +208,5 @@ public class UsersManagementService {
         }
         return response;
     }
-
 
 }

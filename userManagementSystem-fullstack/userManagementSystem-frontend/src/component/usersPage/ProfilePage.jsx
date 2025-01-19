@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import UserService from '../service/UserService'
 import { Link } from 'react-router-dom'
+import "./UsersPage.css"
+
 
 const ProfilePage = () => {
   const [profileInfo, setProfileInfo] = useState({})
@@ -21,8 +23,8 @@ const ProfilePage = () => {
   }
 
   return (
-    <div>
-      <h2>Profile Information</h2>
+    <div className='usersPageContainer'>
+      <h2 className='head'>Profile Information</h2>
       <p>name: {profileInfo.name}</p>
       <p>email: {profileInfo.email}</p>
       <p>city: {profileInfo.city}</p>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import UserService from '../service/UserService'
 import { useNavigate } from 'react-router-dom'
+import "./Auth.css"
 
 const RegistrationPage = () => {
 
@@ -40,7 +41,7 @@ const RegistrationPage = () => {
 
     } catch (error) {
       console.log(error);
-      setError(error)
+      // setError(error)
       setTimeout(() => {
         setError("")
       }, 5000);
@@ -48,10 +49,10 @@ const RegistrationPage = () => {
   }
 
   return (
-    <div>
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className='authContainer'>
+      <h2 className='head'>Register</h2>
+      <form className='form' onSubmit={handleSubmit}>
+        <div className='formItem'>
           <label>Name</label>
           <input
             type="text"
@@ -59,7 +60,7 @@ const RegistrationPage = () => {
             onChange={handleInputChange}
           />
         </div>
-        <div>
+        <div className='formItem'>
           <label>Email</label>
           <input
             type="email"
@@ -67,7 +68,7 @@ const RegistrationPage = () => {
             onChange={handleInputChange}
           />
         </div>
-        <div>
+        <div className='formItem'>
           <label>Password</label>
           <input
             type="text"
@@ -75,7 +76,7 @@ const RegistrationPage = () => {
             onChange={handleInputChange}
           />
         </div>
-        <div>
+        <div className='formItem'>
           <label>City</label>
           <input
             type="text"
@@ -83,7 +84,7 @@ const RegistrationPage = () => {
             onChange={handleInputChange}
           />
         </div>
-        <div>
+        <div className='formItem'>
           <label>Role</label>
           <input
             type="text"
@@ -93,9 +94,9 @@ const RegistrationPage = () => {
         </div>
         <button type='submit'>Register</button>
       </form>
-      {
+      {/* {
         error && <h2>{error}</h2>
-      }
+      } */}
 
     </div>)
 }

@@ -1,0 +1,52 @@
+.authContainer {
+    margin-top: 6rem;
+    min-height: 100vh
+}
+
+.authContainer .head {
+    text-align: center;
+    margin: 1rem 0;
+    color: #4e4e4e;
+    font-size: 1.6rem;
+}
+
+.authContainer .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    border: 1px solid #c9c9c9;
+    width: 500px;
+    margin: 0 auto;
+    padding: 2.5rem;
+}
+
+.authContainer .form .formItem {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.authContainer .form .formItem label{
+    font-size: 1.2rem;
+    color: #00003f;
+    margin-bottom: 0.5rem;
+}
+
+.authContainer .form .formItem input {
+    padding: 0.6rem 1rem;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.authContainer .form button{
+    width: 250px;
+    padding: 0.8rem 0.5rem;
+    cursor: pointer;
+    background-color: #6959ae;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    margin-top: 1rem;
+    border-radius: 5px;
+}
