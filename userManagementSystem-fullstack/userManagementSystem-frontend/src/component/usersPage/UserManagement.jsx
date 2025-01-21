@@ -77,7 +77,7 @@ const UserManagement = () => {
         <div className="tableBody">
           {
             users.map(user => (
-              <div className='tableContent'>
+              <div key={user.id} className='tableContent'>
                 <span>{user.id}</span>
                 <span>{user.name}</span>
                 <span>{user.email}</span>

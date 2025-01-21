@@ -38,6 +38,7 @@
     padding: 0.6rem 1rem;
     border: 1px solid gray;
     border-radius: 5px;
+    color: #00003f;
 }
 
 .authContainer .form button{
@@ -50,4 +51,15 @@
     font-size: 1rem;
     margin-top: 1rem;
     border-radius: 5px;
+}
+
+.authContainer .form button.disabled{
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+.authContainer .errorText{
+    text-align: center;
+    font-size: 2rem;
+    color: red;
 }

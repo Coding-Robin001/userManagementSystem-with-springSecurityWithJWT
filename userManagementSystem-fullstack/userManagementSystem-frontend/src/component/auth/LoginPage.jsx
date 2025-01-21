@@ -10,11 +10,13 @@ const LoginPage = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
+  const [submissionInProgress, setSubmissionInProgress] = useState(false)
 
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setSubmissionInProgress(true)
 
     try {
       const userData = await UserService.login(email, password)
@@ -22,19 +24,20 @@ const LoginPage = () => {
       if (userData.token) {
         localStorage.setItem('token', userData.token)
         localStorage.setItem('role', userData.role)
+        alert(userData.token)
         navigate("/profile")
       } else {
-        setError(userData.error)
+        setError(userData.error + "error")
       }
 
     } catch (error) {
-      console.log(error);
-      setError(error)
+      console.log(error.message);
+      setError(error.message)
       setTimeout(() => {
         setError("")
-      }, 5000);
-
+      }, 10000);
     }
+    setSubmissionInProgress(false)
   }
 
   return (
@@ -57,10 +60,16 @@ const LoginPage = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type='submit'>Login</button>
+        <button
+          className={submissionInProgress ? "disabled" : null}
+          type='submit'
+          disabled={submissionInProgress}
+        >
+          {submissionInProgress ? "LOGGING YOU IN. . ." : "LOGIN"}
+        </button>
       </form>
       {
-        error && <h2>{error}</h2>
+        error && <h2 className='errorText'>{error}, Check Internet Connection!!!</h2>
       }
 
     </div>

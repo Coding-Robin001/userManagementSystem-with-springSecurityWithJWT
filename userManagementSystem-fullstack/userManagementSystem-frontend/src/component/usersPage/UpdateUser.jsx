@@ -14,6 +14,9 @@ const UpdateUser = () => {
     role: "",
     city: ""
   })
+  const [error, setError] = useState("")
+  const [submissionInProgress, setSubmissionInProgress] = useState(false)
+
 
   useEffect(() => {
     fetchUserById(userId)
@@ -41,13 +44,14 @@ const UpdateUser = () => {
 
   const handleSubmit = async () => {
     e.preventDefault()
+    setSubmissionInProgress(true)
 
     try {
       const confirmUpdate = window.confirm("are you sure you want to update this user?")
       if (confirmUpdate) {
         const token = localStorage.getItem("token")
         const response = await UserService.updateUser(userId, userData, token)
-        if(response.statusCode == 200){
+        if (response.statusCode == 200) {
           alert("user updated successfully!")
           navigate("/admin/userManagement")
         }
@@ -55,9 +59,10 @@ const UpdateUser = () => {
 
     } catch (error) {
       console.log("error updating user", error);
+      setError(error.message)
       alert("error updating user", error)
-
     }
+    setSubmissionInProgress(false)
   }
 
 
@@ -110,11 +115,17 @@ const UpdateUser = () => {
             onChange={handleInputChange}
           />
         </div>
-        <button type='submit'>Update User</button>
+        <button
+          className={submissionInProgress ? "disabled" : null}
+          disabled={submissionInProgress}
+          type='submit'
+        >
+          {submissionInProgress ? "UPDATING USER..." : "UPDATE USER"}
+        </button>
       </form>
-      {/* {
-        error && <h2>{error}</h2>
-      } */}
+      {
+        error && <h2 className='errorText'>{error}, Check Internet Connection!!!</h2>
+      }
 
     </div>
   )

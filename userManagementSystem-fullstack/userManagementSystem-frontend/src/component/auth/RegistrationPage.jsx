@@ -12,6 +12,9 @@ const RegistrationPage = () => {
     city: "",
     role: ""
   })
+  const [error, setError] = useState("")
+  const [submissionInProgress, setSubmissionInProgress] = useState(false)
+
 
   const navigate = useNavigate()
 
@@ -22,10 +25,11 @@ const RegistrationPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setSubmissionInProgress(true)
 
     try {
       const token = localStorage.getItem("token")
-      const userData = await UserService.register(userData, token)
+      await UserService.register(formData, token)
 
       setFormData({
         name: "",
@@ -38,14 +42,14 @@ const RegistrationPage = () => {
       alert("user registered successfully!")
       navigate("/admin/userManagement")
 
-
     } catch (error) {
       console.log(error);
-      // setError(error)
+      setError(error.message)
       setTimeout(() => {
         setError("")
       }, 5000);
     }
+    setSubmissionInProgress(false)
   }
 
   return (
@@ -56,6 +60,7 @@ const RegistrationPage = () => {
           <label>Name</label>
           <input
             type="text"
+            name='name'
             value={formData.name}
             onChange={handleInputChange}
           />
@@ -64,6 +69,7 @@ const RegistrationPage = () => {
           <label>Email</label>
           <input
             type="email"
+            name='email'
             value={formData.email}
             onChange={handleInputChange}
           />
@@ -71,7 +77,8 @@ const RegistrationPage = () => {
         <div className='formItem'>
           <label>Password</label>
           <input
-            type="text"
+            type="password"
+            name='password'
             value={formData.password}
             onChange={handleInputChange}
           />
@@ -80,6 +87,7 @@ const RegistrationPage = () => {
           <label>City</label>
           <input
             type="text"
+            name='city'
             value={formData.city}
             onChange={handleInputChange}
           />
@@ -88,15 +96,22 @@ const RegistrationPage = () => {
           <label>Role</label>
           <input
             type="text"
+            name='role'
             value={formData.role}
             onChange={handleInputChange}
           />
         </div>
-        <button type='submit'>Register</button>
+        <button
+          className={submissionInProgress ? "disabled" : null}
+          disabled={submissionInProgress}
+          type='submit'
+        >
+          {submissionInProgress ? "IN PROGRESS. . ." : "REGISTER"}
+          </button>
       </form>
-      {/* {
-        error && <h2>{error}</h2>
-      } */}
+      {
+        error && <h2 className='errorText'>{error}, Check Internet Connection!!!</h2>
+      }
 
     </div>)
 }

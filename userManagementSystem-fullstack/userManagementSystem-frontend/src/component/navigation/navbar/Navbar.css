@@ -15,6 +15,7 @@
     margin: 0 auto;
     display: flex;
     justify-content: center;
+    gap: 4rem;
     /* justify-content: space-between; */
     align-items: center;
     /* border: 1px solid blue; */
@@ -33,4 +34,10 @@
 
 .navbar-container .nav-list p{
     color: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-container .nav-list p.active {
+    color: #5868fa;
+    font-weight: 500;
 }

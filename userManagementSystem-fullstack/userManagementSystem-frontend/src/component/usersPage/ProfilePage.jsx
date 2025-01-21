@@ -26,9 +26,9 @@ const ProfilePage = () => {
     <div className='usersPageContainer'>
       <h2 className='head'>Profile Information</h2>
       <div className='profileInfoBox'>
-        <p>Name: <span>{profileInfo.name} adewole ademola</span></p>
-        <p>Email: <span>{profileInfo.email} adewole@gmail.com</span></p>
-        <p>City: <span>{profileInfo.city} jamaica</span></p>
+        <p>Name: <span>{profileInfo.name}</span></p>
+        <p>Email: <span>{profileInfo.email} </span></p>
+        <p>City: <span>{profileInfo.city} </span></p>
         {
           profileInfo.role === "ADMIN" &&
           <button>

@@ -2,7 +2,7 @@ import axios from "axios";
 
 class UserService{
     // ask chatgpt a way to create this methods/functions in ajaacsript/non-class way
-    static BASE_URL = "http://localhost:1010"
+    static BASE_URL = "http://localhost:8080"
 
     static async login(email, password){
         try {
