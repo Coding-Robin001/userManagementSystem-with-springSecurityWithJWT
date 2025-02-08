@@ -32,7 +32,7 @@ const Navbar = () => {
                 {!isAuthenticated &&
                     <Link to="/">
                         <div className='nav_logo'>
-                            CODING ROBIN
+                            USER MANAGER
                         </div>
                     </Link>
                 }

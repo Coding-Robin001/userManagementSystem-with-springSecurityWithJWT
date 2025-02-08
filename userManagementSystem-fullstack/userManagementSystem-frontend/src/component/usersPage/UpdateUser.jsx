@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import UserService from '../service/UserService'
+import { updateUser, getUserById } from '../service/UserService'
 import { useParams, useNavigate } from 'react-router-dom'
 import "../auth/Auth.css"
 
@@ -25,7 +25,7 @@ const UpdateUser = () => {
   const fetchUserById = async (userId) => {
     try {
       const token = localStorage.getItem("token")
-      const response = await UserService.getUserById(userId, token)
+      const response = await getUserById(userId, token)
       const { name, email, role, city } = response.ourUsers
       setUserData({ name, email, role, city })
     } catch (error) {
@@ -42,15 +42,16 @@ const UpdateUser = () => {
     }))
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setSubmissionInProgress(true)
 
     try {
+
       const confirmUpdate = window.confirm("are you sure you want to update this user?")
       if (confirmUpdate) {
         const token = localStorage.getItem("token")
-        const response = await UserService.updateUser(userId, userData, token)
+        const response = await updateUser(userId, userData, token)
         if (response.statusCode == 200) {
           alert("user updated successfully!")
           navigate("/admin/userManagement")

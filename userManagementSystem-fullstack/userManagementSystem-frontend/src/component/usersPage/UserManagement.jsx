@@ -64,7 +64,7 @@ const UserManagement = () => {
 
   return (
     <div className='userManagementContainer'>
-      <h2 className='head'>User Management Page</h2>
+      <h2 className='head'>User Manager</h2>
       <button className='addBtn'><Link to="/register">Add User</Link></button>
 
       <div className='table'>

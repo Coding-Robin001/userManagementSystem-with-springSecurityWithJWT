@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import UserService from '../service/UserService'
 import { Link } from 'react-router-dom'
 import "./UsersPage.css"
+import { getProfileInfo } from '../service/UserService'
 
 
 const ProfilePage = () => {
@@ -15,7 +15,7 @@ const ProfilePage = () => {
 
     try {
       const token = localStorage.getItem("token")
-      const response = await UserService.getProfileInfo(token)
+      const response = await getProfileInfo(token)
       setProfileInfo(response.ourUsers)
     } catch (error) {
       console.log("error loading profile information", error);
@@ -26,16 +26,16 @@ const ProfilePage = () => {
     <div className='usersPageContainer'>
       <h2 className='head'>Profile Information</h2>
       <div className='profileInfoBox'>
-        <p>Name: <span>{profileInfo.name}</span></p>
-        <p>Email: <span>{profileInfo.email} </span></p>
-        <p>City: <span>{profileInfo.city} </span></p>
+        <p>Name: <span> Peter Smith{profileInfo.name}</span></p>
+        <p>Email: <span>@PeterSmith23@gmail.com{profileInfo.email} </span></p>
+        <p>City: <span>Los Angeles{profileInfo.city} </span></p>
         {
-          profileInfo.role === "ADMIN" &&
+          // profileInfo.role === "ADMIN" &&
           <button>
             <Link
               to={`/updateUser/${profileInfo.id}`}
             >
-              Update this profile
+              Update profile
             </Link>
           </button>
         }

@@ -1,8 +1,8 @@
 import React from 'react'
-import UserService from '../service/UserService'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import "./Auth.css"
+import { loginService } from '../service/UserService'
 
 
 const LoginPage = () => {
@@ -19,7 +19,7 @@ const LoginPage = () => {
     setSubmissionInProgress(true)
 
     try {
-      const userData = await UserService.login(email, password)
+      const userData = await loginService(email, password)
 
       if (userData.token) {
         localStorage.setItem('token', userData.token)

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import UserService from '../service/UserService'
 import { useNavigate } from 'react-router-dom'
 import "./Auth.css"
+import { registerService } from '../service/UserService'
 
 const RegistrationPage = () => {
 
@@ -29,7 +29,14 @@ const RegistrationPage = () => {
 
     try {
       const token = localStorage.getItem("token")
-      await UserService.register(formData, token)
+      const role = localStorage.getItem("role")
+
+      if (role !== "ADMIN") {
+        alert("unathorized access!")
+        navigate("/login")
+        return
+      }
+      await registerService(formData, token)
 
       setFormData({
         name: "",
@@ -41,8 +48,8 @@ const RegistrationPage = () => {
 
       alert("user registered successfully!")
       navigate("/admin/userManagement")
-
-    } catch (error) {
+    }
+    catch (error) {
       console.log(error);
       setError(error.message)
       setTimeout(() => {
@@ -57,7 +64,7 @@ const RegistrationPage = () => {
       <h2 className='head'>Register</h2>
       <form className='form' onSubmit={handleSubmit}>
         <div className='formItem'>
-          <label>Name</label>
+          <label>Full Name</label>
           <input
             type="text"
             name='name'
@@ -106,8 +113,8 @@ const RegistrationPage = () => {
           disabled={submissionInProgress}
           type='submit'
         >
-          {submissionInProgress ? "IN PROGRESS. . ." : "REGISTER"}
-          </button>
+          {submissionInProgress ? "REGISTERING USER. . ." : "REGISTER"}
+        </button>
       </form>
       {
         error && <h2 className='errorText'>{error}, Check Internet Connection!!!</h2>
