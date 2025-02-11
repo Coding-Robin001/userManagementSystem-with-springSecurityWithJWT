@@ -95,12 +95,13 @@
 
 .userManagementContainer .table {
     width: 100%;
-    padding: 3rem 3rem;
+    /* padding: 3rem 0rem; */
     background-color: #b3b3b3;
 
 }
 
 .userManagementContainer .tableHead {
+    padding: 1.5rem .9rem;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -118,10 +119,18 @@
 }
 
 .userManagementContainer .tableBody .tableContent {
+    padding: 0rem 2rem;
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #fff;
     align-items: center;
+    cursor: pointer;
+    transition: 0.25s all ease-in-out;
+}
+
+.userManagementContainer .tableBody .tableContent:hover {
+    background-color: #e4e4e4;
+    color: #00003f;
 }
 
 .userManagementContainer .tableBody .tableContent span {

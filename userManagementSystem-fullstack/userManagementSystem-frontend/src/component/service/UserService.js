@@ -69,46 +69,41 @@ const getUserById = async (userId, token) => {
     }
 };
 
+const getAllUsers = async (token) => {
+    try {
+
+        const response = await axios.get(`${this.BASE_URL}/admin/getAllUsers`,
+            {
+                headers: { Authorization: `Bearer ${token}` }
+            }
+        )
+        return response.data;
+
+    } catch (error) {
+        throw error
+    }
+};
+
+const deleteUser = async (userId, token) => {
+    try {
+
+        const response = await axios.delete(`${this.BASE_URL}/admin/deleteUser/${userId}`,
+            {
+                headers: { Authorization: `Bearer ${token}` }
+            }
+        )
+        return response.data;
+
+    } catch (error) {
+        throw error
+    }
+};
 
 
-export { loginService, registerService, getProfileInfo, updateUser, getUserById };
+export { loginService, registerService, getProfileInfo, updateUser, getUserById, getAllUsers, deleteUser };
 
 
 class UserService {
-
-    static BASE_URL = "http://localhost:8080"
-
-    static async getAllUsers(token) {
-        try {
-
-            const response = await axios.get(`${this.BASE_URL}/admin/getAllUsers`,
-                {
-                    headers: { Authorization: `Bearer ${token}` }
-                }
-            )
-            return response.data;
-
-        } catch (error) {
-            throw error
-        }
-    }
-
-
-    static async deleteUser(userId, token) {
-        try {
-
-            const response = await axios.delete(`${this.BASE_URL}/admin/deleteUser/${userId}`,
-                {
-                    headers: { Authorization: `Bearer ${token}` }
-                }
-            )
-            return response.data;
-
-        } catch (error) {
-            throw error
-        }
-    }
-
 
     // AUTHENTICATION CHECKER
     static logout() {
@@ -139,4 +134,3 @@ class UserService {
 }
 
 export default UserService
-// export {login}

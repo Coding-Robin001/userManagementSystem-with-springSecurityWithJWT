@@ -6,23 +6,45 @@ const UserManagement = () => {
   const userss = [
     {
       id: 1,
-      name: "adewole ademola",
-      email: "adewole@gmail.com"
+      name: "adekunle ademola",
+      email: "adekunle@gmail.com",
+      role: "ADMIN"
     },
     {
       id: 2,
-      name: "adewole kolawole",
-      email: "kolawole@gmail.com"
+      name: "ola kolawole",
+      email: "kolawole@gmail.com",
+      role: "ADMIN"
     },
     {
       id: 3,
-      name: "adewole thomas",
-      email: "thomas@gmail.com"
+      name: "saint thomas",
+      email: "thomas@gmail.com",
+      role: "USER"
     },
     {
       id: 4,
-      name: "troy ademola",
-      email: "adewoleTroy@gmail.com"
+      name: "troy clinton",
+      email: "TroyclintonN@gmail.com",
+      role: "USER"
+    },
+    {
+      id: 5,
+      name: "maisey clinton",
+      email: "maieyclintonN@gmail.com",
+      role: "USER"
+    },
+    {
+      id: 6,
+      name: "olabisi andrews",
+      email: "olabisi10@gmail.com",
+      role: "USER"
+    },
+    {
+      id: 7,
+      name: "ayomide adebanjo",
+      email: "ayomide20@gmail.com",
+      role: "USER"
     }
   ]
 
@@ -64,7 +86,7 @@ const UserManagement = () => {
 
   return (
     <div className='userManagementContainer'>
-      <h2 className='head'>User Manager</h2>
+      <h2 className='head'>Manage Users</h2>
       <button className='addBtn'><Link to="/register">Add User</Link></button>
 
       <div className='table'>
@@ -72,6 +94,7 @@ const UserManagement = () => {
           <span>ID</span>
           <span>NAME</span>
           <span>EMAIL</span>
+          <span>ROLE</span>
           <span>ACTIONS</span>
         </div>
         <div className="tableBody">
@@ -81,6 +104,7 @@ const UserManagement = () => {
                 <span>{user.id}</span>
                 <span>{user.name}</span>
                 <span>{user.email}</span>
+                <span>{user.role}</span>
                 <div className="btnBox">
                   <button
                     className='btnDelete'

@@ -72,7 +72,6 @@ public class UsersManagementService {
         } catch (Exception e) {
             response.setStatusCode(500);
             response.setError(e.getMessage());
-            response.setStatusCode(200);
         }
         return response;
     }
