@@ -100,37 +100,29 @@ const deleteUser = async (userId, token) => {
 };
 
 
-export { loginService, registerService, getProfileInfo, updateUser, getUserById, getAllUsers, deleteUser };
-
-
-class UserService {
-
-    // AUTHENTICATION CHECKER
-    static logout() {
-        localStorage.removeItem("token")
-        localStorage.removeItem("role")
-    }
-
-    static isAuthenticated() {
-        const token = localStorage.getItem("token")
-        return !!token
-    }
-
-    static isAdmin() {
-        const role = localStorage.getItem("role")
-        return role == "ADMIN"
-    }
-
-    static isUser() {
-        const role = localStorage.getItem("role")
-        return role == "USER"
-    }
-
-    static adminOnly() {
-        return this.isAuthenticated() && this.isAdmin()
-    }
-
-    // ask chatgpt if a person cannot just go into local storage and change role. if its secure.
+const logout = () => {
+    localStorage.removeItem("token")
+    localStorage.removeItem("role")
 }
 
-export default UserService
+const isAuthenticated = () => {
+    const token = localStorage.getItem("token")
+    return !!token
+}
+
+const isAdmin = () => {
+    const role = localStorage.getItem("role")
+    return role == "ADMIN"
+}
+
+const isUser = () => {
+    const role = localStorage.getItem("role")
+    return role == "USER"
+}
+
+const adminOnly =() => {
+    return this.isAuthenticated() && this.isAdmin()
+}
+export { loginService, registerService, getProfileInfo, updateUser, getUserById, getAllUsers, deleteUser, 
+    logout, isAuthenticated, isAdmin, isUser, adminOnly  };
+

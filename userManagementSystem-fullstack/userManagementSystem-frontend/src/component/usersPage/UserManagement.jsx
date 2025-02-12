@@ -53,9 +53,11 @@ const UserManagement = () => {
 
 
 
-  // useEffect(() => {
-  //   fetchUsers()
-  // }, [])
+  useEffect(() => {
+    fetchUsers()
+  }, [])
+
+  // logicToOutputErrorToScreen
 
   const fetchUsers = async () => {
 
@@ -65,6 +67,7 @@ const UserManagement = () => {
       setUsers(response.ourUsersList)
 
     } catch (error) {
+      alert("error fetching user", error)
       console.log("error fetching user", error);
     }
   }
