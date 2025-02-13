@@ -1,3 +1,11 @@
+# Ignore application configuration files with secrets
+application.yml
+application.properties
+config/
+*.secrets
+.env
+
+
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
