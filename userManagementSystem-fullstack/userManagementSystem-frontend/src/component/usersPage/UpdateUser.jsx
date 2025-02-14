@@ -14,7 +14,9 @@ const UpdateUser = () => {
     role: "",
     city: ""
   })
-  const [error, setError] = useState("")
+  const [submitError, setSubmitError] = useState("")
+  const [fetchError, setFetchError] = useState("")
+  const [fetchingInProgress, setFetchingInProgress] = useState(false)
   const [submissionInProgress, setSubmissionInProgress] = useState(false)
 
 
@@ -23,14 +25,19 @@ const UpdateUser = () => {
   }, [userId])
 
   const fetchUserById = async (userId) => {
+    setFetchingInProgress(true)
+
     try {
       const token = localStorage.getItem("token")
       const response = await getUserById(userId, token)
       const { name, email, role, city } = response.ourUsers
       setUserData({ name, email, role, city })
+      setFetchError(null)
     } catch (error) {
-      console.log("error fetching user data", error);
+      setFetchError(error.message)
     }
+
+    setFetchingInProgress(false)
   }
 
   // use this format in register use input change too
@@ -59,8 +66,7 @@ const UpdateUser = () => {
       }
 
     } catch (error) {
-      console.log("error updating user", error);
-      setError(error.message)
+      setSubmitError(error.message)
       alert("error updating user", error)
     }
     setSubmissionInProgress(false)
@@ -70,6 +76,14 @@ const UpdateUser = () => {
   return (
     <div className='authContainer'>
       <h2 className='head'>Update User</h2>
+      {
+        fetchingInProgress &&
+          <p className='fetchMsg'>fetching user, please wait...</p>
+      }
+      {
+        fetchError &&
+        <p className='fetchMsg error'>Unable to fetch to-be-updated user, {fetchError}!</p>
+      }
       <form className='form' onSubmit={handleSubmit}>
         <div className='formItem'>
           <label>Name</label>
@@ -116,16 +130,17 @@ const UpdateUser = () => {
             onChange={handleInputChange}
           />
         </div>
+        
         <button
-          className={submissionInProgress ? "disabled" : null}
-          disabled={submissionInProgress}
+          className={submissionInProgress || fetchError.trim().length > 0 ? "disabled" : null}
+          disabled={submissionInProgress || fetchError}
           type='submit'
         >
           {submissionInProgress ? "UPDATING USER..." : "UPDATE USER"}
         </button>
       </form>
       {
-        error && <h2 className='errorText'>{error}, Check Internet Connection!!!</h2>
+        submitError && <h2 className='errorText'>{submitError}, check internet connection!</h2>
       }
 
     </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import UserService from '../service/UserService'
+import { getAllUsers, deleteUser } from '../service/UserService'
 
 const UserManagement = () => {
   const userss = [
@@ -48,50 +48,69 @@ const UserManagement = () => {
     }
   ]
 
-
-  const [users, setUsers] = useState(userss)
-
-
+  const [users, setUsers] = useState([])
+  const [deleteError, setDeleteError] = useState("")
+  const [fetchError, setFetchError] = useState(null)
+  const [fetchingInProgress, setFetchingInProgress] = useState(false)
+  const [deleteInProgress, setDeleteInProgress] = useState(false)
 
   useEffect(() => {
     fetchUsers()
-  }, [])
+  }, [users])
 
-  // logicToOutputErrorToScreen
 
   const fetchUsers = async () => {
+    setFetchingInProgress(true)
 
     try {
       const token = localStorage.getItem("token")
-      const response = await UserService.getAllUsers(token)
+      const response = await getAllUsers(token)
       setUsers(response.ourUsersList)
-
+      setFetchError(null)
     } catch (error) {
-      alert("error fetching user", error)
-      console.log("error fetching user", error);
+      setFetchError(error.message)
+      console.log(error);
     }
+
+    setFetchingInProgress(false)
   }
 
-  const deleteUser = async (userId) => {
+  const handleDeleteUser = async (userId) => {
+
+    setDeleteInProgress(true)
 
     try {
-      const confirmDeleteUser = window.confirm("are you sure yu want to delete user?")
+      const confirmDeleteUser = window.confirm("are you sure you want to delete user?")
       const token = localStorage.getItem("token")
       if (confirmDeleteUser) {
-        await UserService.deleteUser(userId)
+        await deleteUser(userId, token)
         fetchUsers()
       }
+      setDeleteError(null)
 
     } catch (error) {
+      setDeleteError(error.message)
       console.log("error deleting user", error);
     }
+
+    setDeleteInProgress(false)
   }
 
   return (
     <div className='userManagementContainer'>
       <h2 className='head'>Manage Users</h2>
       <button className='addBtn'><Link to="/register">Add User</Link></button>
-
+      {
+        fetchingInProgress &&
+        <p className='fetchMsg'>fetching user, please wait...</p>
+      }
+      {
+        fetchError &&
+        <p className='fetchMsg error'>Unable to fetch list of users, {fetchError}!</p>
+      }
+      {
+        deleteError && <h2 className='fetchMsg errorDelete'>unable to delete user, {deleteError}, check internet connection!</h2>
+      }
       <div className='table'>
         <div className="tableHead">
           <span>ID</span>
@@ -110,13 +129,16 @@ const UserManagement = () => {
                 <span>{user.role}</span>
                 <div className="btnBox">
                   <button
-                    className='btnDelete'
-                    onClick={() => deleteUser(user.id)}
+                    disabled={fetchError != null || deleteInProgress}
+                    className={fetchError != null ? "disable" : "btnDelete"}
+                    onClick={() => handleDeleteUser(user.id)}
                   >
                     Delete User
                   </button>
                   <button
-                    className='btnUpdate'>
+                    disabled={fetchError != null}
+                    className={fetchError != null ? "disable" : "btnUpdate"}
+                  >
                     <Link
                       to={`/updateUser/${user.id}`}
                     >

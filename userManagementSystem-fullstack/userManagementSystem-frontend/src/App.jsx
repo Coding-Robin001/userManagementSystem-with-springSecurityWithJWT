@@ -2,7 +2,8 @@ import './App.css'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Navbar from "./component/navigation/navbar/Navbar"
 import LoginPage from "./component/auth/LoginPage"
-import ProfilePage from "./component/usersPage/ProfilePage"import RegistrationPage from "./component/auth/RegistrationPage"
+import ProfilePage from "./component/usersPage/ProfilePage"
+import RegistrationPage from "./component/auth/RegistrationPage"
 import UserManagementPage from "./component/usersPage/UserManagement"
 import UpdateUser from "./component/usersPage/UpdateUser"
 import { adminOnly } from './component/service/UserService'

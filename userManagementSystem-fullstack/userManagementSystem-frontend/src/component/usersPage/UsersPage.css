@@ -5,6 +5,13 @@
     background-color: #e4e4e4;
 }
 
+.usersPageContainer .errorText{
+    text-align: center;
+    font-size: 2rem;
+    color: red;
+    margin-top: 2rem;
+}
+
 .usersPageContainer .head {
     text-align: center;
     color: #4e4e4e;
@@ -22,6 +29,10 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
+}
+
+.usersPageContainer .profileInfoBox .fetchingMsg{
+    font-size: 1.5rem;
 }
 
 
@@ -153,6 +164,11 @@
     cursor: pointer;
 }
 
+.userManagementContainer .tableBody .tableContent .btnBox button.disable{
+    background-color: gray;
+    cursor: not-allowed;
+}
+
 .userManagementContainer .tableBody .tableContent .btnBox button.btnUpdate {
     background-color: #083992;
 }
@@ -160,4 +176,19 @@
 .userManagementContainer .tableBody .tableContent .btnBox button.btnDelete {
     background-color: red;
 
+}
+
+.userManagementContainer .fetchMsg {
+    text-align: center;
+    font-size: 2rem;
+    margin: 2rem 0;
+}
+
+.userManagementContainer .fetchMsg.error {
+    color: red;
+}
+
+.userManagementContainer .fetchMsg.errorDelete{
+    color: red;
+    margin-top: 0;
 }

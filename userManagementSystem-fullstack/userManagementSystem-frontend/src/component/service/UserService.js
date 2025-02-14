@@ -57,7 +57,7 @@ const updateUser = async (userId, userData, token) => {
 const getUserById = async (userId, token) => {
     try {
 
-        const response = await axios.get(`${this.BASE_URL}/admin/getUser/${userId}`,
+        const response = await axios.get(`${BASE_URL}/admin/getUser/${userId}`,
             {
                 headers: { Authorization: `Bearer ${token}` }
             }
@@ -72,7 +72,7 @@ const getUserById = async (userId, token) => {
 const getAllUsers = async (token) => {
     try {
 
-        const response = await axios.get(`${this.BASE_URL}/admin/getAllUsers`,
+        const response = await axios.get(`${BASE_URL}/admin/getAllUsers`,
             {
                 headers: { Authorization: `Bearer ${token}` }
             }
@@ -87,7 +87,7 @@ const getAllUsers = async (token) => {
 const deleteUser = async (userId, token) => {
     try {
 
-        const response = await axios.delete(`${this.BASE_URL}/admin/deleteUser/${userId}`,
+        const response = await axios.delete(`${BASE_URL}/admin/deleteUser/${userId}`,
             {
                 headers: { Authorization: `Bearer ${token}` }
             }
@@ -112,17 +112,20 @@ const isAuthenticated = () => {
 
 const isAdmin = () => {
     const role = localStorage.getItem("role")
-    return role == "ADMIN"
+    return role === "ADMIN"
 }
 
 const isUser = () => {
     const role = localStorage.getItem("role")
-    return role == "USER"
+    return role === "USER"
 }
 
-const adminOnly =() => {
-    return this.isAuthenticated() && this.isAdmin()
+const adminOnly = () => {
+    return isAuthenticated() && isAdmin()
 }
-export { loginService, registerService, getProfileInfo, updateUser, getUserById, getAllUsers, deleteUser, 
-    logout, isAuthenticated, isAdmin, isUser, adminOnly  };
+
+export {
+    loginService, registerService, getProfileInfo, updateUser, getUserById,
+    getAllUsers, deleteUser, logout, isAuthenticated, isAdmin, isUser, adminOnly
+};
 

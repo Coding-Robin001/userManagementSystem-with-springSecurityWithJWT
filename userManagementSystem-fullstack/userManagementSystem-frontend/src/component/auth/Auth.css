@@ -64,3 +64,13 @@
     color: red;
     margin-top: 2rem;
 }
+
+.authContainer .fetchMsg{
+    text-align: center;
+    font-size: 2rem;
+    margin: 2rem 0;
+}
+
+.authContainer .fetchMsg.error{
+    color: red;
+}
