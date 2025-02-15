@@ -69,7 +69,6 @@ const UserManagement = () => {
       setFetchError(null)
     } catch (error) {
       setFetchError(error.message)
-      console.log(error);
     }
 
     setFetchingInProgress(false)
@@ -90,7 +89,6 @@ const UserManagement = () => {
 
     } catch (error) {
       setDeleteError(error.message)
-      console.log("error deleting user", error);
     }
 
     setDeleteInProgress(false)

@@ -3,12 +3,10 @@ import { Link } from 'react-router-dom'
 import "./UsersPage.css"
 import { getProfileInfo } from '../service/UserService'
 
-
 const ProfilePage = () => {
   const [profileInfo, setProfileInfo] = useState({})
   const [error, setError] = useState("")
   const [fetchingInProgress, setFetchingInProgress] = useState(false)
-
 
   useEffect(() => {
     fetchProfileInfo()

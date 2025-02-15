@@ -58,19 +58,14 @@ const UpdateUser = () => {
       const confirmUpdate = window.confirm("are you sure you want to update this user?")
       if (confirmUpdate) {
         const token = localStorage.getItem("token")
-        console.log(token);
         
-        const response = await updateUser(userId, userData, token)
-        console.log(response);
-        
-          alert("user updated successfully!")
-          navigate("/admin/userManagement")
+        await updateUser(userId, userData, token)
+        alert("user updated successfully!")
+        navigate("/admin/userManagement")
       }
 
     } catch (error) {
       setSubmitError(error.message)
-      console.log(error.response);
-      
     }
     setSubmissionInProgress(false)
   }
@@ -81,7 +76,7 @@ const UpdateUser = () => {
       <h2 className='head'>Update User</h2>
       {
         fetchingInProgress &&
-          <p className='fetchMsg'>fetching user, please wait...</p>
+        <p className='fetchMsg'>fetching user, please wait...</p>
       }
       {
         fetchError &&
@@ -133,7 +128,7 @@ const UpdateUser = () => {
             onChange={handleInputChange}
           />
         </div>
-        
+
         <button
           className={submissionInProgress ? "disabled" : null}
           disabled={submissionInProgress || fetchError}

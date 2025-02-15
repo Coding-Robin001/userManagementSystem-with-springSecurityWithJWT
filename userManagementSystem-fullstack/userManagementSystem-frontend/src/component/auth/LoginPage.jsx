@@ -4,7 +4,6 @@ import { useState } from 'react'
 import "./Auth.css"
 import { loginService } from '../service/UserService'
 
-
 const LoginPage = () => {
 
   const [email, setEmail] = useState("")
@@ -30,7 +29,6 @@ const LoginPage = () => {
       }
 
     } catch (error) {
-      console.log(error.message);
       setError(error.message)
       setTimeout(() => {
         setError("")

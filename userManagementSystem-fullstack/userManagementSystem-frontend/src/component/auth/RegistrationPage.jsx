@@ -38,17 +38,13 @@ const RegistrationPage = () => {
         return
       }
 
-
       const response = await registerService(formData, token)
       console.log(formData, token, role);
       if(response.statusCode == 200){
-        console.log(response);
         alert("user registered successfully!")
         navigate("/admin/userManagement")
       } else{
-        console.log(response);
         alert(response.error)
-        // navigate("/admin/userManagement")
       }
 
       setFormData({
@@ -58,11 +54,8 @@ const RegistrationPage = () => {
         password: "",
         role: ""
       })
-
-    
     }
     catch (error) {
-      console.log(error);
       setError(error.message)
       setTimeout(() => {
         setError("")
