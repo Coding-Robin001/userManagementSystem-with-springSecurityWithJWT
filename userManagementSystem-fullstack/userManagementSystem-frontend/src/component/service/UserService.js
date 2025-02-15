@@ -13,7 +13,7 @@ const loginService = async (email, password) => {
 
 const registerService = async (userData, token) => {
     try {
-        const response = await axios.post(`${BASE_URL}/auth/register`, { userData },
+        const response = await axios.post(`${BASE_URL}/auth/register`, userData,
             {
                 headers: { Authorization: `Bearer ${token}` }
             }
@@ -42,7 +42,7 @@ const getProfileInfo = async (token) => {
 const updateUser = async (userId, userData, token) => {
     try {
 
-        const response = await axios.put(`${BASE_URL}/admin/update/${userId}`, userData,
+        const response = await axios.put(`${BASE_URL}/admin/updateUser/${userId}`, userData,
             {
                 headers: { Authorization: `Bearer ${token}` }
             }

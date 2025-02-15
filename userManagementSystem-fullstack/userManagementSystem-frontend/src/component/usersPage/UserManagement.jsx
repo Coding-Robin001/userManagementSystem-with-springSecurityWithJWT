@@ -3,50 +3,50 @@ import { Link } from 'react-router-dom'
 import { getAllUsers, deleteUser } from '../service/UserService'
 
 const UserManagement = () => {
-  const userss = [
-    {
-      id: 1,
-      name: "adekunle ademola",
-      email: "adekunle@gmail.com",
-      role: "ADMIN"
-    },
-    {
-      id: 2,
-      name: "ola kolawole",
-      email: "kolawole@gmail.com",
-      role: "ADMIN"
-    },
-    {
-      id: 3,
-      name: "saint thomas",
-      email: "thomas@gmail.com",
-      role: "USER"
-    },
-    {
-      id: 4,
-      name: "troy clinton",
-      email: "TroyclintonN@gmail.com",
-      role: "USER"
-    },
-    {
-      id: 5,
-      name: "maisey clinton",
-      email: "maieyclintonN@gmail.com",
-      role: "USER"
-    },
-    {
-      id: 6,
-      name: "olabisi andrews",
-      email: "olabisi10@gmail.com",
-      role: "USER"
-    },
-    {
-      id: 7,
-      name: "ayomide adebanjo",
-      email: "ayomide20@gmail.com",
-      role: "USER"
-    }
-  ]
+  // const userss = [
+  //   {
+  //     id: 1,
+  //     name: "adekunle ademola",
+  //     email: "adekunle@gmail.com",
+  //     role: "ADMIN"
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "ola kolawole",
+  //     email: "kolawole@gmail.com",
+  //     role: "ADMIN"
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "saint thomas",
+  //     email: "thomas@gmail.com",
+  //     role: "USER"
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "troy clinton",
+  //     email: "TroyclintonN@gmail.com",
+  //     role: "USER"
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "maisey clinton",
+  //     email: "maieyclintonN@gmail.com",
+  //     role: "USER"
+  //   },
+  //   {
+  //     id: 6,
+  //     name: "olabisi andrews",
+  //     email: "olabisi10@gmail.com",
+  //     role: "USER"
+  //   },
+  //   {
+  //     id: 7,
+  //     name: "ayomide adebanjo",
+  //     email: "ayomide20@gmail.com",
+  //     role: "USER"
+  //   }
+  // ]
 
   const [users, setUsers] = useState([])
   const [deleteError, setDeleteError] = useState("")
@@ -56,7 +56,7 @@ const UserManagement = () => {
 
   useEffect(() => {
     fetchUsers()
-  }, [users])
+  }, [])
 
 
   const fetchUsers = async () => {

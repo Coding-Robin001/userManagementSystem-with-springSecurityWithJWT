@@ -24,6 +24,7 @@ const RegistrationPage = () => {
   }
 
   const handleSubmit = async (e) => {
+
     e.preventDefault()
     setSubmissionInProgress(true)
 
@@ -36,7 +37,19 @@ const RegistrationPage = () => {
         navigate("/login")
         return
       }
-      await registerService(formData, token)
+
+
+      const response = await registerService(formData, token)
+      console.log(formData, token, role);
+      if(response.statusCode == 200){
+        console.log(response);
+        alert("user registered successfully!")
+        navigate("/admin/userManagement")
+      } else{
+        console.log(response);
+        alert(response.error)
+        // navigate("/admin/userManagement")
+      }
 
       setFormData({
         name: "",
@@ -46,8 +59,7 @@ const RegistrationPage = () => {
         role: ""
       })
 
-      alert("user registered successfully!")
-      navigate("/admin/userManagement")
+    
     }
     catch (error) {
       console.log(error);

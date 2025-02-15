@@ -24,10 +24,9 @@ const LoginPage = () => {
       if (userData.token) {
         localStorage.setItem('token', userData.token)
         localStorage.setItem('role', userData.role)
-        alert(userData.token)
         navigate("/profile")
       } else {
-        setError(userData.error + "error")
+        setError(userData.message + "error")
       }
 
     } catch (error) {

@@ -37,17 +37,18 @@ public class UsersManagementService {
             ourUser.setCity(registrationRequest.getCity());
             ourUser.setRole(registrationRequest.getRole());
             ourUser.setName(registrationRequest.getName());
+
             ourUser.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
             OurUsers savedUser = usersRepo.save(ourUser);
 
             if (savedUser.getId() > 0) {
                 response.setOurUsers(savedUser);
+                response.setStatusCode(200);
                 response.setMessage("User saved successfully!");
             }
         } catch (Exception e) {
             response.setStatusCode(500);
             response.setError(e.getMessage());
-            response.setStatusCode(200);
         }
         return response;
     }
@@ -159,32 +160,42 @@ public class UsersManagementService {
         return response;
     }
 
-    public ReqRes updateUser(Integer id, OurUsers updatedUser){
+    public ReqRes updateUser(Integer id, OurUsers updatedUser) {
         ReqRes response = new ReqRes();
 
         try {
             Optional<OurUsers> user = usersRepo.findById(id);
-            if (user.isPresent()){
-                OurUsers existsingUser = user.get();
-                existsingUser.setName(updatedUser.getName());
-                existsingUser.setCity(updatedUser.getCity());
-                existsingUser.setEmail(updatedUser.getEmail());
-                existsingUser.setRole(updatedUser.getRole());
 
-                if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()){
-                    existsingUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
+            if (user.isPresent()) {
+                OurUsers existingUser = user.get();
+                existingUser.setName(updatedUser.getName());
+                existingUser.setCity(updatedUser.getCity());
+                existingUser.setEmail(updatedUser.getEmail());
+                existingUser.setRole(updatedUser.getRole());
+
+                if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {
+                    existingUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
                 }
-                OurUsers newlyUpdatedUser = usersRepo.save(existsingUser);
+
+                OurUsers newlyUpdatedUser = usersRepo.save(existingUser);
                 response.setOurUsers(newlyUpdatedUser);
                 response.setStatusCode(200);
-                response.setMessage("user updated successfully!");
+                response.setMessage("User updated successfully!");
+            } else {
+                // 🔥 Add this part: return a response when user is not found
+                response.setStatusCode(404);
+                response.setError("User with ID " + id + " not found.");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
+            // 🔥 Log the error for debugging
+            e.printStackTrace();
             response.setStatusCode(500);
-            response.setError("An error occurred while attempting to update user " + e.getMessage());
+            response.setError("An error occurred while updating the user: " + e.getMessage());
         }
-        return response;
+
+        return response; // 🔥 Ensure response is always returned
     }
+
 
 
     public ReqRes getMyInfo(String email){

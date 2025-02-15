@@ -41,8 +41,14 @@ public class UserController {
     }
 
     @PutMapping("/admin/updateUser/{userId}")
-    public ResponseEntity<ReqRes> updateUserById(@PathVariable Integer userId, @RequestBody OurUsers regResData){
-        return ResponseEntity.ok(usersManagementService.updateUser(userId, regResData));
+    public ResponseEntity<ReqRes> updateUserById(@PathVariable Integer userId, @RequestBody OurUsers regResData) {
+        ReqRes response = usersManagementService.updateUser(userId, regResData);
+
+        if (response.getStatusCode() == 200) {
+            return ResponseEntity.ok(response);
+        } else {
+            return ResponseEntity.status(response.getStatusCode()).body(response);
+        }
     }
 
     @GetMapping("/adminuser/getProfile")

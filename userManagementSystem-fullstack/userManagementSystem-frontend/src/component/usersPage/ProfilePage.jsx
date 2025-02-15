@@ -35,12 +35,11 @@ const ProfilePage = () => {
         {
           fetchingInProgress && <span className='fetchingMsg'>fetching user please wait...</span>
         }
-        {/* <p>Name: <span> Peter Smith{profileInfo.name}</span></p>
-        <p>Email: <span>@PeterSmith23@gmail.com{profileInfo.email} </span></p>
-        <p>City: <span>Los Angeles{profileInfo.city} </span></p> */}
+        <p>Name: <span> {profileInfo.name}</span></p>
+        <p>Email: <span>{profileInfo.email} </span></p>
+        <p>City: <span>{profileInfo.city} </span></p>
         {
-          // profileInfo.role === "ADMIN" &&
-          !Object.keys(profileInfo).length === 0 && 
+          profileInfo.role === "ADMIN" && 
           <button>
             <Link
               to={`/updateUser/${profileInfo.id}`}

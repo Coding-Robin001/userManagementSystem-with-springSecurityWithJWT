@@ -58,16 +58,19 @@ const UpdateUser = () => {
       const confirmUpdate = window.confirm("are you sure you want to update this user?")
       if (confirmUpdate) {
         const token = localStorage.getItem("token")
+        console.log(token);
+        
         const response = await updateUser(userId, userData, token)
-        if (response.statusCode == 200) {
+        console.log(response);
+        
           alert("user updated successfully!")
           navigate("/admin/userManagement")
-        }
       }
 
     } catch (error) {
       setSubmitError(error.message)
-      alert("error updating user", error)
+      console.log(error.response);
+      
     }
     setSubmissionInProgress(false)
   }
@@ -132,7 +135,7 @@ const UpdateUser = () => {
         </div>
         
         <button
-          className={submissionInProgress || fetchError.trim().length > 0 ? "disabled" : null}
+          className={submissionInProgress ? "disabled" : null}
           disabled={submissionInProgress || fetchError}
           type='submit'
         >
@@ -140,7 +143,7 @@ const UpdateUser = () => {
         </button>
       </form>
       {
-        submitError && <h2 className='errorText'>{submitError}, check internet connection!</h2>
+        submitError && <h2 className='errorText'>{submitError}</h2>
       }
 
     </div>
